@@ -1,0 +1,83 @@
+extends adminLayout
+
+block content
+    div.content
+        h3 #{title}
+        div.input-service-form.form-horizontal
+            form(action="/admin/service/save-service" method="post" enctype="multipart/form-data")
+                div.form-group
+                    label 项目名称
+                    input.form-control(type="text" name="name" width="500")
+                div.form-group
+                    label 服务电话
+                    input.form-control(type="number" name="phone")
+                div.form-group
+                    label 项目说明
+                    input.form-control(type="text" name="intro")
+                div.form-group
+                    label 项目详情
+                    textarea.form-control(name="content" rows="5" maxlength="800" placeholder="输入项目详情")
+                div.form-group
+                    label 项目图片
+                    input(name="itemPic" type="file" multiple)
+                div.form-group
+                    label 服务提供商
+                    input.form-control(type="text" name="merchant")
+                div.form-group
+                    label 添加服务人员
+                    input.form-control(type="text" name="servers" placeholder="输入多人时请用逗号分隔，如：李白，杜甫，孟浩然。")
+                label 服务时间
+                div.radio
+                    label
+                        input(type="radio" name="serverTime" value="全年无休" checked)
+                        | 全年无休
+                div.radio
+                    label
+                        input(type="radio" name="serverTime" value="工作日提供服务")
+                        | 工作日提供服务
+                div.radio
+                    label
+                        input(type="radio" name="serverTime" value="节假日不提供服务")
+                        | 节假日不提供服务
+                label 服务时段
+                div.form-group
+                    label
+                        | 开始：
+                        input(type="time", name="startTime")
+                    div(style={display:'inline-block', width:'50px'})
+                    label
+                        | 结束：
+                        input(type="time", name="overTime")
+                div.form-group.form-inline
+                    label 总价
+                    input.form-control(type="number" name="total")
+                label 价格细分  #[button.btn.btn-default +]
+                div.well
+                    div.form-group.form-inline
+                        label
+                            | 项目名称
+                            input.form-control(type="text" name="pricen0")
+                        div(style={display:'inline-block', width:'50px'})
+                        label
+                            | 价格
+                            input.form-control(type="number" name="pricep0")
+                    div.form-group.form-inline
+                        label
+                            | 项目名称
+                            input.form-control(type="text" name="pricen1")
+                        div(style={display:'inline-block', width:'50px'})
+                        label
+                            | 价格
+                            input.form-control(type="number" name="pricep1")
+                    div.form-group.form-inline
+                        label
+                            | 项目名称
+                            input.form-control(type="text" name="pricen2")
+                        div(style={display:'inline-block', width:'50px'})
+                        label
+                            | 价格
+                            input.form-control(type="number" name="pricep2")
+                div.form-group
+                    label 备注
+                    input.form-control(type="text" name="remark")
+                input.btn.btn-info(type="submit" value="submit")

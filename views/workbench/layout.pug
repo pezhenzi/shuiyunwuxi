@@ -1,0 +1,81 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="description" content="")
+        meta(name="author" content="")
+        title SB Admin 2 - Bootstrap Admin Theme
+        link(href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet")
+        link(href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet")
+        link(href="/dist/css/sb-admin-2.css" rel="stylesheet")
+        link(href="/vendor/morrisjs/morris.css" rel="stylesheet")
+        link(href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css")
+    body
+        div(id="wrapper")
+            nav.navbar.navbar-default.navbar-static-top(role="navigation" style="margin-bottom: 0")
+                div.navbar-header
+                    button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href="index.html") 江南晚报融媒体工作台
+
+                div.navbar-default.sidebar(role="navigation")
+                    div.sidebar-nav.navbar-collapse
+                        ul.nav(id="side-menu")
+                            li.sidebar-search
+                                div.input-group.custom-search-form
+                                    input.form-control(type="text" placeholder="Search...")
+                                    span.input-group-btn
+                                        button.btn.btn-default(type="button")
+                                            i.fa.fa-search
+                            li
+                                a(href="#")
+                                    i.fa.fa-dashboard.fa-fw
+                                    span 公共看板
+                            li
+                                a(href="#")
+                                    i.fa.fa-handshake-o.fa-fw
+                                    span 工作台
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="#") 报题与领题
+                                    li: a(href="#") 编辑器
+                                    li: a(href="#" title="题目完成情况、发布情况和工分管理") 题目管理
+                            li
+                                a(href="#")
+                                    i.fa.fa-soccer-ball-o.fa-fw
+                                    span 稿件库
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="#") 稿件汇总
+                                    li: a(href="#") 稿件分发
+                            li
+                                a(href="#")
+                                    i.fa.fa-coffee.fa-fw
+                                    span 素材库
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="#") 图片库
+                                    li: a(href="#") 多媒体
+                            li
+                                a(href="#")
+                                    i.fa.fa-wrench.fa-fw
+                                    span 系统设置
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="#") 公告管理
+                                    li: a(href="#") 推送消息
+            div(id="page-wrapper")
+                block content
+
+        script(src="/vendor/jquery/jquery.min.js")
+        script(src="/vendor/bootstrap/js/bootstrap.min.js")
+        script(src="/vendor/metisMenu/metisMenu.min.js")
+        script(src="/vendor/raphael/raphael.min.js")
+        script(src="/vendor/morrisjs/morris.min.js")
+        script(src="/data/morris-data.js")
+        script(src="/dist/js/sb-admin-2.js")

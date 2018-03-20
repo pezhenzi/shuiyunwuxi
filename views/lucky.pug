@@ -1,0 +1,10 @@
+extends layoutLucky
+
+block content
+    div#box.box
+        div.outer.KinerLottery.KinerLotteryContent
+            img(src="/images/zzsc.png")
+        div.inner.KinerLotteryBtn.start
+    script(src="/javascripts/kinerLottery.js")
+    script.
+        var whichAward = function(deg) {if ((deg > 330 && deg <= 360) || (deg > 0 && deg <= 30)) {return "话费100元";}else if((deg > 30 && deg <= 90)){return "话费20元";} else if (deg > 90 && deg <= 150) {return "话费50元";} else if (deg > 150 && deg <= 210) {return "话费20元";} else if (deg > 210 && deg <= 270) {return "话费50元";} else if (deg > 270 && deg <= 330) {return "话费20元";}};var KinerLottery = new KinerLottery({rotateNum: 8,body: "#box",direction: 0,disabledHandler: function(key) {switch (key) {case "noStart":alert("活动尚未开始");break;case "completed":alert("活动已结束");break;}},clickCallback: function() {function random() {return Math.floor(Math.random() * 360);}this.goKinerLottery('#{number}');},KinerLotteryHandler: function(deg) {alert("恭喜您获得:" + whichAward(deg));}})

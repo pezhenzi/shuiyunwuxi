@@ -1,0 +1,17 @@
+extends layout1
+
+block content
+    div.input
+        div(style="height:80px")
+        h1 无锡大走访公众号推广数据查询
+        form(method="POST" action="/wxdzf/search")
+            div.form-group
+                label(for="code") 输入四位二级代码
+                input.form-control(type="text" name="code" id="code" style="width:60%;margin:auto")
+                button.btn.btn-default(type="submit") 提交
+        div(style="height:20px")
+        form(method="POST" action="/wxdzf/search-big")
+            div.form-group
+                label(for="code-big")  输入四位一级代码
+                input.form-control(type="text" name="codeBig" id="code-big" style="width:60%;margin:auto")
+                button.btn.btn-default(type="submit") 提交

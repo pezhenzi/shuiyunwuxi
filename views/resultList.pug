@@ -1,0 +1,17 @@
+extends layout1
+
+block content
+    div.input
+        div(style="height:30px")
+        h2 #{name}的推广总数为：#{total}。
+        h3 具体数据如下:
+        h5 截至#{date} #{time}
+        div(style="height:20px")
+        table.table.table-striped
+            tr
+                td 单位
+                td 数据
+            each val in data
+                tr
+                    td #{val[1]}
+                    td #{val[0]}

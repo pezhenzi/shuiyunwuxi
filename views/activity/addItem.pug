@@ -1,0 +1,37 @@
+extends ../adminLayout
+
+block content
+    h2 #{title}
+    form(action="/admin/activity/save-act" method="POST")
+        div.well
+            div.form-group.form-inline
+                label
+                    | 项目名称
+                    input.form-control(type="text" name="price[0][name]")
+                div(style={display: 'inline-block', width: '50px'})
+                label
+                    | 价格
+                    input.form-control(type="number" name="price[0][price]")
+            div.form-group.form-inline
+                label
+                    | 项目名称
+                    input.form-control(type="text" name="price[1][name]")
+                div(style={display: 'inline-block', width: '50px'})
+                label
+                    | 价格
+                    input.form-control(type="number" name="price[1][price]")
+            div.form-group.form-inline
+                label
+                    | 项目名称
+                    input.form-control(type="text" name="price[2][name]")
+                div(style={display: 'inline-block', width: '50px'})
+                label
+                    | 价格
+                    input.form-control(type="number" name="price[2][price]")
+        input.btn.btn-info(type="submit" value="submit" id="btn")
+
+        script.
+            let btn = document.getElementById("btn");
+            btn.onclick = function(){
+                //alert("Good.")
+            }

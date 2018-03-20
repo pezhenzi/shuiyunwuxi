@@ -1,0 +1,118 @@
+extends ../adminLayout
+
+block content
+    h2#big-title 编辑服务项目
+    h4#title 待编辑的项目ID：#{id}
+    //- 声明一个全局变量 testMyData，为其赋值，但原理是什么？？。
+    - var j = 'var testMyData = '+JSON.stringify(dataObject);
+    script !{j}
+    div.content
+        div.input-service-form.form-horizontal
+            form(action="/admin/service/save-service" method="post" enctype="multipart/form-data")
+                div.form-group
+                    label 项目名称
+                    - let name = dataObject.name;
+                    input.form-control(type="text" name="name" width="500" value=name)
+                div.form-group
+                    label 服务电话
+                    - let phone = dataObject.phone;
+                    input.form-control(type="number" name="phone" value=phone)
+                div.form-group
+                    label 项目说明
+                    - let intro = dataObject.intro;
+                    input.form-control(type="text" name="intro" value=intro)
+                div.form-group
+                    label 项目详情
+                    textarea.form-control(name="content" rows="5" maxlength="800" placeholder="输入项目详情") #{dataObject.content}
+                div.form-group
+                    label 项目图片
+                    - let url = `http://wpc.jnwb.net/${dataObject.picture[0].substr(7)}`;
+                    img(src=url style="width:120px")
+                    input(name="itemPic" type="file" multiple)
+                div.form-group
+                    label 服务提供商
+                    - let server = dataObject.server;
+                    input.form-control(type="text" name="merchant" value=server)
+                div.form-group
+                    label 添加服务人员
+                    - let technician = dataObject.technician.join('，');
+                    input.form-control(type="text" name="servers" placeholder="输入多人时请用逗号分隔，如：李白，杜甫，孟浩然。" value=technician)
+                label 服务时间
+                div.radio
+                    label
+                        - let day = dataObject.serveTime.day;
+                        input(type="radio" name="serverTime" value="全年无休" checked)
+                        | 全年无休
+                div.radio
+                    label
+                        input(type="radio" name="serverTime" value="工作日提供服务")
+                        | 工作日提供服务
+                div.radio
+                    label
+                        input(type="radio" name="serverTime" value="节假日不提供服务")
+                        | 节假日不提供服务
+                div.radio
+                    label
+                        input(type="radio" name="serverTime" value="BB" title="DD")
+                        | BB
+                label 服务时段
+                div.form-group
+                    label
+                        | 开始：
+                        - let start = dataObject.serveTime.start;
+                        input(type="time", name="startTime" value=start)
+                    div(style={display: 'inline-block', width: '50px'})
+                    label
+                        | 结束：
+                        - let end = dataObject.serveTime.end;
+                        input(type="time", name="overTime" value=end)
+                div.form-group.form-inline
+                    label 总价
+                    - let total = dataObject.total;
+                    input.form-control(type="number" name="total" value=total)
+                label 价格细分  #[button.btn.btn-default +]
+                div.well
+                    div.form-group.form-inline
+                        label
+                            | 项目名称
+                            - let priceName0 = dataObject.price[0].item;
+                            input.form-control(type="text" name="pricen0" value=priceName0)
+                        div(style={display: 'inline-block', width: '50px'})
+                        label
+                            | 价格
+                            - let pricePrice0 = dataObject.price[0].price;
+                            input.form-control(type="number" name="pricep0" value=pricePrice0)
+                    div.form-group.form-inline
+                        label
+                            | 项目名称
+                            - let priceName1 = dataObject.price[1].item;
+                            input.form-control(type="text" name="pricen1" value=priceName1)
+                        div(style={display: 'inline-block', width: '50px'})
+                        label
+                            | 价格
+                            - let pricePrice1 = dataObject.price[1].price;
+                            input.form-control(type="number" name="pricep1" value=pricePrice1)
+                    div.form-group.form-inline
+                        label
+                            | 项目名称
+                            - let priceName2 = dataObject.price[2].item;
+                            input.form-control(type="text" name="pricen2" value=priceName2)
+                        div(style={display: 'inline-block', width: '50px'})
+                        label
+                            | 价格
+                            - let pricePrice2 = dataObject.price[2].price;
+                            input.form-control(type="number" name="pricep2" value=pricePrice2)
+                div.form-group
+                    label 备注
+                    input.form-control(type="text" name="remark")
+                input.btn.btn-info(type="submit" value="submit")
+
+        script.
+            $(document).ready(function () {
+                //- '#{data}'这样可以在script中获取res.render()传来的变量。
+                var val = '#{dataObject.serveTime.day}';
+                console.log(window.testMyData);
+                $("input:radio[value=" + val + "]").attr('checked', 'true');  //注意选择器中使用变量的方法，其实是字符串拼接。
+            })
+
+

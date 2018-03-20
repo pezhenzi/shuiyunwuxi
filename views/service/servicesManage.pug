@@ -1,0 +1,41 @@
+extends ../adminLayout
+
+block content
+    h2 #{msg}
+    h3 这里显示已有的服务项目列表
+    h4 列表中带管理操作按钮 如 添加服务 修改服务 删除服务等
+    div(style="height:25px")
+    div(style="display:flex; width:18%; float:right; justify-content:space-around; margin-bottom:5px"  )
+        a.btn.btn-success(href="/admin/service/add-item" role="button") 添加服务
+        a.btn.btn-success(href="/admin/service/order-manage" role="button") 管理预约
+        a.btn.btn-success(href="/admin/service/feedback-manage" role="button") 反馈信息
+    table.table.table-striped
+        tr
+            td 服务
+            td 电话
+            td 项目说明
+            td 图片
+            td 服务商
+            td 服务人员
+            td 服务时间
+            td 总价
+            td 分项报价
+            td 管理
+        each val in data
+            tr
+                td #{val.name ? val.name : ``}
+                td #{val.phone ? val.phone : ``}
+                td #{val.intro ? val.intro : ``}
+                td
+                    - var url = val.picture ? 'http://wpc.jnwb.net/'+val.picture[0].substr(7) : ``;
+                    img(src=url width=60)
+                td #{val.server ? val.server : ``}
+                td #{val.technician ? val.technician.join(',') : ``}
+                td #{val.serveTime ? val.serveTime.day : ``}
+                td #{val.total ? val.total : ``}
+                td --
+                td
+                    a(href=`/admin/service/edit-item/${val.id}`)
+                        i.fa.fa-pencil-square-o.fa-fw
+                    a(href=`/admin/service/delete-item/${val.id}`)
+                        i.fa.fa-trash-o.fa-fw

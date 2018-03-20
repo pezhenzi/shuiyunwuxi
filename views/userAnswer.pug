@@ -1,0 +1,227 @@
+extends layout1
+
+block content
+    div#myModal
+        p#line-one
+        p#line-two
+        button.btn.btn-primary.btn-lg#next 下一题
+        button.btn.btn-primary.btn-lg#lucky-info(style="display:none") 去领奖
+    div.swiper-container
+        div.swiper-wrapper
+            div.swiper-slide
+                div.home-page
+                    h3 猜猜身边的水地标
+                    p 无锡水利邀请您参加水地标有奖知识问答。参与知识问答游戏即有机会赢取总额18000元的手机话费。
+                    div#blank 
+                    p 竞答及抽奖规则：
+                    ol
+                        li 1.关注水韵无锡公众号即可参与。
+                        li 2.每张图片有两个选项，选择一个正确的名称。
+                        li 3.每次发五张图，点错会提醒，全部做对参加抽奖。
+                        li 4.每天6000元话费的总奖励金额，抽完即止。
+                        li 5.一个微信号得奖一次。
+                        li 6.自2018年3月20日开始,每天10点~22点为答题时间。
+                        li 7.仅限无锡本地手机号码参与。
+                    button#start-1.btn.btn-primary.btn-lg 奖项设置如下
+            div.swiper-slide
+                div.home-page
+                    p 每日奖项:
+                    div#blank 
+                    ol
+                        li 1.水利达人 10名 奖金话费50元
+                        li 2.智慧之星 300名 奖金话费5元
+                        li 3.完美有缺奖  2000名  奖金话费2元
+                    div
+                        if todayLucky.length>0
+                            p 今日50元话费中奖名单：
+                            ol#today-lucky-list
+                                each item in todayLucky
+                                    li #{item.nickname}：#{item.phone}
+                        else
+                            p
+                    div#blank 
+                    div#blank 
+                    div#blank
+                    div#blank
+                    div#blank
+                    button#start-2.btn.btn-primary.btn-lg 开始答题
+            div.swiper-slide
+                div.question
+                    p 第一题
+                    div.photo
+                        img.img-responsive.img-rounded(src=questions[0].url)
+                    div.options
+                        ul(title=questions[0].questionIndex)
+                            each opt in questions[0].options
+                                li(title=opt)
+                                    button #{opt}
+            div.swiper-slide
+                div.question
+                    p 第二题
+                    div.photo
+                        img.img-responsive.img-rounded(src=questions[1].url)
+                    div.options
+                        ul(title=questions[1].questionIndex)
+                            each opt in questions[1].options
+                                li(title=opt)
+                                    button #{opt}
+            div.swiper-slide
+                div.question
+                    p 第三题
+                    div.photo
+                        img.img-responsive.img-rounded(src=questions[2].url)
+                    div.options
+                        ul(title=questions[2].questionIndex)
+                            each opt in questions[2].options
+                                li(title=opt)
+                                    button #{opt}
+            div.swiper-slide
+                div.question
+                    p 第四题
+                    div.photo
+                        img.img-responsive.img-rounded(src=questions[3].url)
+                    div.options
+                        ul(title=questions[3].questionIndex)
+                            each opt in questions[3].options
+                                li(title=opt)
+                                    button #{opt}
+            div.swiper-slide
+                div.question
+                    p 第五题
+                    div.photo
+                        img.img-responsive.img-rounded(src=questions[4].url)
+                    div(title="end").options
+                        ul(title=questions[4].questionIndex)
+                            each opt in questions[4].options
+                                li(title=opt)
+                                    button #{opt}
+            div.swiper-slide
+                div#box.box
+                    div.outer.KinerLottery.KinerLotteryContent
+                        img(src="/images/zzsc-n.png")
+                    div.inner.KinerLotteryBtn.start
+            div.swiper-slide
+                div.info
+                    form
+                        div.form-group
+                            label 话费将直接充到您的手机
+                            input.form-control(type="text" id="phone" placeholder="请填写有效的11位手机号码")
+                        div.form-group
+                            input.btn.btn-lg.btn-success.submit-btn#submit(type="button" value="提交")
+    
+    script(src="/javascripts/swiper-4.1.0.min.js")
+    script(src="/javascripts/kinerLottery.js")
+    script.
+        $(function(){
+            console.log('page loaded');
+            score = 0;
+            answered = 0;  //也可以检查该变量，确认是否为最后一题。
+            number = 0;
+        });
+        let answerSwiper = new Swiper('.swiper-container', {
+            direction:'vertical',
+            loop:false,
+            touchRatio:1.5,
+            allowTouchMove: false,
+        });
+        $('#start-1').click(function(){
+            console.log('查看奖项');
+            answerSwiper.slideNext();
+        });
+        $('#start-2').click(function(){
+            console.log('开始答题');
+            answerSwiper.slideNext();
+        });
+        $('li').click(function(){
+            //$(this).css({'background-color':'#df8505','color':'#fff'})
+            $(this).unbind('click');
+            $(this).siblings().unbind('click');
+            answered += 1;
+            let title = $(this).parent().parent().attr('title');
+            console.log(title);
+            $.post('/wechat/check-answer', {
+                openid:'#{openid}',
+                answer:$(this).attr('title'),
+                index:$(this).parent().attr('title'),
+            }, function(data, textStatus){
+                if(title === 'end'){  //如果是最后一题，显示答题结果和下一步操作。
+                    console.log('The last question.');
+                    if(data.result){
+                        score += 1;
+                        if(score === 5){
+                            $('#myModal').css('display', 'flex');
+                            $('#line-one').text('答对了');
+                            $('#line-two').text('恭喜你！答对了全部题目。')
+                            $('#myModal p').css('color', 'blue');
+                            $('#next').text('开始抽奖');
+                        } else{
+                            $('#myModal').css('display', 'flex');
+                            $('#line-one').text('答对了');
+                            $('#line-two').text('很遗憾，没有全部答对。');
+                            $('#myModal p').css('color', 'red');
+                            $('#next').text('再来一次');
+                        }
+                    } else{
+                        $('#myModal').css('display', 'flex');
+                        $('#line-one').text('答错了');
+                        $('#line-two').text('很遗憾，没有全部答对。');
+                        $('#myModal p').css('color', 'red');
+                        $('#next').text('再来一次');
+                    }
+                } else{
+                    if(data.result){
+                        score += 1;
+                        console.log(score);
+                        $('#myModal').css('display', 'flex');
+                        $('#line-one').text('答对了，再接再厉哦。');
+                        $('#line-two').text('');
+                        $('#myModal p').css('color', 'blue');
+                    } else{
+                        console.log(score);
+                        $('#myModal').css('display', 'flex');
+                        $('#line-one').text('答错了，继续努力。');
+                        $('#line-two').text('');
+                        $('#myModal p').css('color', 'red');
+                    }
+                }
+            });
+        });
+        $('#next').click(function(){
+            if(answered === 5 && score != 5){  //答题完毕，没全答对，进入userRead界面。
+                window.location.href = 'http://wpc.jnwb.net/wechat/restart';
+                //window.location.href = 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI3Mjk3MjIzMA==&hid=2&sn=6114ff3fd8d6a58095e8771721b3299c&scene=18';
+            } else if(answered === 5 && score === 5){  //全部答对，获取抽奖number，进入抽奖。
+                $.post('/wechat/lucky', {openid:'#{openid}',}, function(data){
+                    if(data.allow){
+                        number = data.number;
+                        $('#myModal').css('display', 'none');
+                        answerSwiper.slideNext();
+                    } else{  //后端不允许抽奖，进入userRead界面。
+                            alert(data.msg);
+                            window.location.href = 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI3Mjk3MjIzMA==&hid=2&sn=6114ff3fd8d6a58095e8771721b3299c&scene=18';
+                        }
+                    }
+                );
+            } else if(answered < 5){  //答题进行中，进入下一题。
+                $('#myModal').css('display', 'none');
+                answerSwiper.slideNext();
+            }
+        });
+        $('#lucky-info').click(function(){
+            $('#myModal').css('display','none');
+            answerSwiper.slideTo(8, 500, false);
+        });
+        $('#submit').click(function(){
+            $.post('/wechat/sent-phone',{
+                openid:'#{openid}',
+                phone:$('#phone').val(),
+            }, function(data){
+                console.log(data);
+                if(data.status){
+                    alert('提交成功');
+                    window.location.href = 'https://mp.weixin.qq.com/mp/homepage?__biz=MzI3Mjk3MjIzMA==&hid=2&sn=6114ff3fd8d6a58095e8771721b3299c&scene=18';
+                }
+            });
+        })
+    script.
+        var whichAward = function(deg) {if ((deg > 330 && deg <= 360) || (deg > 0 && deg <= 30)) {return "话费50元";}else if((deg > 30 && deg <= 90)){return "话费2元";} else if (deg > 90 && deg <= 150) {return "话费5元";} else if (deg > 150 && deg <= 210) {return "话费2元";} else if (deg > 210 && deg <= 270) {return "话费5元";} else if (deg > 270 && deg <= 330) {return "话费2元";}};var KinerLottery = new KinerLottery({rotateNum: 8,body: "#box",direction: 0,disabledHandler: function(key) {switch (key) {case "noStart":alert("活动尚未开始");break;case "completed":alert("活动已结束");break;}},clickCallback: function() {function random() {return Math.floor(Math.random() * 360);}this.goKinerLottery(number);},KinerLotteryHandler: function(deg) {$('#line-one').text("恭喜您获得:" + whichAward(deg));$('#line-two').text('');$('#next').css('display','none');$('#lucky-info').css('display','block');$('#myModal').css('display', 'flex');}})

@@ -1,0 +1,263 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="description" content="")
+        meta(name="author" content="")
+        title SB Admin 2 - Bootstrap Admin Theme
+        link(href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet")
+        link(href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet")
+        link(href="/dist/css/sb-admin-2.css" rel="stylesheet")
+        link(href="/vendor/morrisjs/morris.css" rel="stylesheet")
+        link(href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css")
+        script(src="/vendor/jquery/jquery.min.js")
+    body
+        div(id="wrapper")
+            nav.navbar.navbar-default.navbar-static-top(role="navigation" style="margin-bottom: 0")
+                div.navbar-header
+                    button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href="index.html") 爱家物业内容管理系统 v1.0
+
+                ul.nav.navbar-top-links.navbar-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle="dropdown" href="#")
+                            i.fa.fa-envelope.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-messages
+                            li
+                                a(href="#")
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a.text-center(href="#")
+                                    strong Read All Messages
+                                    i.fa.fa-angle-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle="dropdown" href="#")
+                            i.fa.fa-tasks.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-tasks
+                            li
+                                a(href="#")
+                                    div
+                                        p
+                                            strong Task 1
+                                            span.pull-right.text-muted 40% Complete
+                                        div.progress.progress-striped.active
+                                            div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%")
+                                                span.sr-only 40% Complete (success)
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        p
+                                            strong Task 2
+                                            span.pull-right.text-muted 20% Complete
+                                        div.progress.progress-striped.active
+                                            div.progress-bar.progress-bar-info(role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%")
+                                                span.sr-only 20% Complete
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        p
+                                            strong Task 3
+                                            span.pull-right.text-muted 60% Complete
+                                        div.progress.progress-striped.active
+                                            div.progress-bar.progress-bar-warning(role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%")
+                                                span.sr-only 60% Complete (warning)
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        p
+                                            strong Task 4
+                                            span.pull-right.text-muted 80% Complete
+                                        div.progress.progress-striped.active
+                                            div.progress-bar.progress-bar-danger(role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%")
+                                                span.sr-only 80% Complete (danger)
+                            li.divider
+                            li
+                                a.text-center(href="#")
+                                    strong See All Tasks
+                                    i.fa.fa-angle-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle="dropdown" href="#")
+                            i.fa.fa-bell.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-alerts
+                            li
+                                a(href="#")
+                                    div
+                                        i.fa.fa-comment.fa-fw
+                                        p New Comment
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        i.fa.fa-twitter.fa-fw
+                                        p 3 New Followers
+                                        span.pull-right.text-muted.small 12 minutes ago
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        i.fa.fa-envelope.fa-fw
+                                        p Message Sent
+                                        span.pull-right.text-muted.small 4 minutes ago
+
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        i.fa.fa-tasks.fa-fw
+                                        p New Task
+                                        span.pull-right.text-muted.small 4 minutes ago
+
+                            li.divider
+                            li
+                                a(href="#")
+                                    div
+                                        i.fa.fa-upload.fa-fw
+                                        p Server Rebooted
+                                        span.pull-right.text-muted.small 4 minutes ago
+
+                            li.divider
+                            li
+                                a.text-center(href="#")
+                                    strong See All Alerts
+                                    i.fa.fa-angle-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle="dropdown" href="#")
+                            i.fa.fa-user.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-user
+                            li
+                                a(href="#")
+                                    i.fa.fa-user.fa-fw
+                                    User Profile
+                            li
+                                a(href="#")
+                                    i.fa.fa-gear.fa-fw
+                                    Settings
+                            li.divider
+                            li
+                                a(href="login.html")
+                                    i.fa.fa-sign-out.fa-fw
+                                    Logout
+                div.navbar-default.sidebar(role="navigation")
+                    div.sidebar-nav.navbar-collapse
+                        ul.nav(id="side-menu")
+                            li.sidebar-search
+                                div.input-group.custom-search-form
+                                    input.form-control(type="text" placeholder="Search...")
+                                    span.input-group-btn
+                                        button.btn.btn-default(type="button")
+                                            i.fa.fa-search
+                            li
+                                a(href="/admin")
+                                    i.fa.fa-dashboard.fa-fw
+                                    span 仪表盘
+                            li
+                                a(href="#")
+                                    i.fa.fa-handshake-o.fa-fw
+                                    span 服务管理
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="/admin/service/manage") 服务项目管理
+                                    li: a(href="/admin/service/add-item") 添加服务项目
+                                    li: a(href="/admin/service/order-manage") 预约管理
+                                    li: a(href="/admin/service/feedback-manage") 用户反馈
+                            li
+                                a(href="#")
+                                    i.fa.fa-soccer-ball-o.fa-fw
+                                    span 活动管理
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="/admin/activity/add-item") 活动项目管理
+                                    li: a(href="/admin/activity/order-manage") 报名与反馈
+                            li
+                                a(href="#")
+                                    i.fa.fa-coffee.fa-fw
+                                    span 客服管理
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="/admin/custom/online") 在线客服
+                                    li: a(href="/admin/custom/message") 留言管理
+
+                            li
+                                a(href="#")
+                                    i.fa.fa-user-o.fa-fw
+                                    | 用户管理
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="/admin/user/group") 用户分组
+                                    li: a(href="/admin/user/list") 用户列表
+                            li
+                                a(href="/admin/mall")
+                                    i.fa.fa-shopping-cart.fa-fw
+                                    | 商城管理
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li
+                                        a(href="#") Second Level Item
+                                    li
+                                        a(href="#") Second Level Item
+                                    li
+                                        a(href="#") Third Level
+                                            span.fa.arrow
+                                        ul.nav.nav-third-level
+                                            li
+                                                a(href="#") Third Level Item
+                                            li
+                                                a(href="#") Third Level Item
+                                            li
+                                                a(href="#") Third Level Item
+                                            li
+                                                a(href="#") Third Level Item
+                            li
+                                a(href="/admin/system")
+                                    i.fa.fa-wrench.fa-fw
+                                    span 系统设置
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li: a(href="blank.html") 公告管理
+                                    li: a(href="login.html") 推送消息
+            div(id="page-wrapper")
+                block content
+
+        div.footer 江南晚报 技术支持
+
+        script(src="/vendor/bootstrap/js/bootstrap.min.js")
+        script(src="/vendor/metisMenu/metisMenu.min.js")
+        script(src="/vendor/raphael/raphael.min.js")
+        script(src="/vendor/morrisjs/morris.min.js")
+        script(src="/data/morris-data.js")
+        script(src="/dist/js/sb-admin-2.js")

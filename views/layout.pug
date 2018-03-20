@@ -1,0 +1,72 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    script(src='/javascripts/jquery-3.2.1.min.js')
+    script(src='/javascripts/bootstrap.min.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body
+    div.wrap
+        div.header
+            h1 爱家物业数据管理系统
+            h5 v0.1
+        div.main
+            div.nav-left
+                div.nav-list-li
+                    a(class="" data-toggle="collapse" href="#sys-item" aria-expanded="false" aria-controls="sys-item") 系统管理
+                    div.collapse(id="sys-item")
+                      div
+                        ul.nav-item
+                          li item01
+                          li item02
+                          li item03
+                          li item04
+                div.nav-list-li
+                    a(class="" data-toggle="collapse" href="/m/service/main#ser-item" aria-expanded aria-controls="ser-item") 服务管理
+                    div.collapse(id="ser-item")
+                      div
+                        ul.nav-item
+                          li
+                            a(href="/m/service/main") 服务项目管理
+                          li 预约管理
+                          li 用户反馈
+                          li item04
+                div.nav-list-li
+                    a(class="" data-toggle="collapse" href="#act-item" aria-expanded="false" aria-controls="act-item") 活动管理
+                    div.collapse(id="act-item")
+                      div
+                        ul.nav-item
+                          li item01
+                          li item02
+                          li item03
+                          li item04
+                div.nav-list-li
+                    a(class="" data-toggle="collapse" href="#cus-item" aria-expanded="false" aria-controls="cus-item") 客服管理
+                    div.collapse(id="cus-item")
+                      div
+                        ul.nav-item
+                          li item01
+                          li item02
+                          li item03
+                          li item04
+                div.nav-list-li
+                    a(class="" data-toggle="collapse" href="#usr-item" aria-expanded="false" aria-controls="usr-item") 用户管理
+                    div.collapse(id="usr-item")
+                      div
+                        ul.nav-item
+                          li item01
+                          li item02
+                          li item03
+                          li item04
+                div.nav-list-li
+                    a(class="" data-toggle="collapse" href="#mal-item" aria-expanded="false" aria-controls="mal-item") 商城管理
+                    div.collapse(id="mal-item")
+                      div
+                        ul.nav-item
+                          li item01
+                          li item02
+                          li item03
+                          li item04
+            block content

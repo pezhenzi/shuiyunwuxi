@@ -1,0 +1,39 @@
+extends layout1
+
+block content
+    div.lucky-users-container
+        div
+            h3 中奖用户列表
+            h4 #{Date.now()}
+            h4 #{time}
+            button#export-table 导出表格
+        div.users-table
+            table.table.table-striped#lucky-users-list
+                tr
+                    td 序号
+                    td 昵称
+                    td openid
+                    td 手机号码
+                    td 奖品
+                
+                each val, index in data
+                    tr
+                        td #{index+1}
+                        td= val.nickName
+                        td= val.openid
+                        td= val.phone
+                        case val.prize
+                            when '25'
+                                td 50元话费
+                            when '100'
+                                td 5元话费
+                            default
+                                td 2元话费
+    script(src="/javascripts/jquery-3.2.1.min.js")
+    script(src="/javascripts/FileSaver.min.js")
+    script(src="/javascripts/xlsx.core.min.js")
+    script(src="/javascripts/tableExport.js")
+    script.
+        $('#export-table').click(function(){
+            $('#lucky-users-list').tableExport({type:'csv'});
+        });

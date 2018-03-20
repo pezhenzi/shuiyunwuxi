@@ -1,0 +1,11 @@
+extends adminLayout
+
+block content
+    div.content
+        h1 #{title}
+        div.input-service-form
+            form
+                div.form-group
+                    label 活动名称
+                    input.form-control(type="text" name="name")
+                    input.btn.btn-info(type="submit" value="submit")
