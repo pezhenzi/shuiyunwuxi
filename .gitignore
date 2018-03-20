@@ -59,3 +59,4 @@ typings/
 
 #本地文件
 local_files/
+.idea/
