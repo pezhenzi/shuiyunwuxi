@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+#本地文件
+local_files/
